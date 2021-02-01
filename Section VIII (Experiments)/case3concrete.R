@@ -13,7 +13,7 @@ DataSet<-cbind(Input,Output)
 
 SVs_results<-c()
 
-MSE_results<-c()
+RMSE_results<-c()
 
 MAE_results<-c()
 
@@ -27,7 +27,7 @@ for (i in c(1:100)){
   
 SVs<-c()
 
-MSE<-c()
+RMSE<-c()
 
 MAE<-c()
 
@@ -110,7 +110,7 @@ SVs[count]<-EpsSVR$tot.nSV/l
 
 EpsPreds<-predict(EpsSVR, x_test)
 
-MSE[count]<-sqrt(mean((EpsPreds-y_test)^2))
+RMSE[count]<-sqrt(mean((EpsPreds-y_test)^2))
 
 MAE[count]<-mean(abs(EpsPreds-y_test))
 
@@ -134,7 +134,7 @@ Prediction<-scale_prediction*Scale
 
 ## our optimal output
 
-MSE_Optimal<-sqrt(mean((Prediction-y_test)^2))
+RMSE_Optimal<-sqrt(mean((Prediction-y_test)^2))
 
 MAE_Optimal<-mean(abs(Prediction-y_test))
 
@@ -152,7 +152,7 @@ Optimal_Parameter<-rbind(Optimal_Parameter,cbind(Nu_Optimal,Eps_Optimal,Scale_Op
 
 SVs[count+1]<-SVs_Optimal
 
-MSE[count+1]<-MSE_Optimal
+RMSE[count+1]<-RMSE_Optimal
 
 MAE[count+1]<-MAE_Optimal
 
@@ -166,7 +166,7 @@ LinearFit=lm(y_train~.,data=SampleTrainData)
 
 LinearPred=predict(LinearFit,x_test)
 
-MSE[count+2]<-sqrt(mean((LinearPred-y_test)^2))
+RMSE[count+2]<-sqrt(mean((LinearPred-y_test)^2))
 
 MAE[count+2]<-mean(abs(LinearPred-y_test))
 
@@ -175,7 +175,7 @@ TreeFit=rpart(y_train~.,data=SampleTrainData)
 
 TreePred=predict(TreeFit,x_test)
 
-MSE[count+3]<-sqrt(mean((TreePred-y_test)^2))
+RMSE[count+3]<-sqrt(mean((TreePred-y_test)^2))
 
 MAE[count+3]<-mean(abs(TreePred-y_test))
 
@@ -185,14 +185,14 @@ NNFit=neuralnet(y_train~.,data = SampleTrainData)
 
 NNPred=predict(NNFit,x_test)
 
-MSE[count+4]<-sqrt(mean((NNPred-y_test)^2))
+RMSE[count+4]<-sqrt(mean((NNPred-y_test)^2))
 
 MAE[count+4]<-mean(abs(NNPred-y_test))
 
 
 SVs_results<-rbind(SVs_results,SVs)
 
-MSE_results<-rbind(MSE_results,MSE)
+RMSE_results<-rbind(RMSE_results,RMSE)
 
 MAE_results<-rbind(MAE_results,MAE)
 
@@ -200,7 +200,7 @@ Eps_results<-rbind(Eps_results,TotalEps)
 
 }
 
-write.csv(MSE_results,file="concrete_MSE.csv")
+write.csv(RMSE_results,file="concrete_RMSE.csv")
 write.csv(MAE_results,file="concrete_MAE.csv")
 
 write.csv(SVs_results,file="concrete_SVs.csv")
