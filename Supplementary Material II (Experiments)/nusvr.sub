@@ -1,0 +1,13 @@
+#!/bin/bash -l
+ 
+#PBS -N nucase1
+#PBS -l ncpus=8
+#PBS -l walltime=96:00:00
+#PBS -l mem=32gb
+ 
+echo "I ran on: "
+cat $PBS_NODEFILE
+module load r/3.6.2-foss-2019b
+cd $PBS_O_WORKDIR
+Rscript case1concrete.R > epa.out
+module unload r/3.6.2-foss-2019b
