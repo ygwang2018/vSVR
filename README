@@ -1,7 +1,0 @@
-Project: A new algorithm for support vector regression with automatic selection of hyperparameters
-The attached files in each folder are listed as:
-1. the main file: case1concrete.R
-2. the data set:Concrete_Data.xlsx
-3. the file for HPC running: nusvr.sub
-4. the results: concrete_Eps.csv, concrete_MAE.csv, concrete_Optimal.csv, concrete_RMSE.csv, and concrete_SVs.csv
-
